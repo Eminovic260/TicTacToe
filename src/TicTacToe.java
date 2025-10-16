@@ -15,8 +15,8 @@ public class TicTacToe {
                 cells[i][j] = new Cell();
             }
         }
-        playerX=new Player("X");
-        playerO=new Player("O");
+        playerX = new Player("X");
+        playerO = new Player("O");
         currentPlayer = playerX;
     }
 
@@ -37,16 +37,15 @@ public class TicTacToe {
     }
 
 
-
-    public int [] getMove() {
+    public int[] getMove() {
         Scanner scanner = new Scanner(System.in);
         int row = -1;
         int col = -1;
 
         while (true) {
             System.out.print("Jouer Ligne et Colonne : ");
-            row = scanner.nextInt() -1;
-            col = scanner.nextInt()-1;
+            row = scanner.nextInt() - 1;
+            col = scanner.nextInt() - 1;
             if (row < 0 || row >= SIZE || col < 0 || col >= SIZE) {
                 System.out.println("La colonne n'est pas valide !");
                 continue;
@@ -62,18 +61,11 @@ public class TicTacToe {
     }
 
 
-
     public void switchPlayer() {
         currentPlayer = (currentPlayer == playerX) ? playerO : playerX;
     }
 
 
-
-    public void playOneTurn() {
-        int[] move = getMove();
-        setOwner(move[0], move[1], currentPlayer);
-        switchPlayer();
-    }
     public void setOwner(int row, int col, Player player) {
         cells[row][col].setOwner(player);
     }
@@ -81,11 +73,79 @@ public class TicTacToe {
     public void run() {
         while (true) {
             display();
-            playOneTurn();
+            int[] move = getMove();
+            setOwner(move[0], move[1], currentPlayer);
+
+            if (checkWin(currentPlayer)) {
+                display();
+                System.out.println("Le Gagnat est : Joueur " + currentPlayer.getRepresentation() + " ! ");
+                break;
+            }
+            if (isBoardFull()){
+                display();
+                System.out.println("MAtch nul !");
+                break;
+            }
+
+            switchPlayer();
         }
     }
 
-    public void winCondition() {
 
+    public boolean checkWin(Player player) {
+        String symbol = player.getRepresentation();
+
+        for (int i = 0; i < SIZE; i++) {
+            boolean win = true;
+            for (int j = 0; j < SIZE; j++) {
+                if (!symbol.equals(cells[i][j].getRepresentation().trim())) {
+                    win = false;
+                    break;
+                }
+            }
+            if (win) return true;
+        }
+
+        for (int j = 0; j < SIZE; j++) {
+            boolean win = true;
+            for (int i = 0; i < SIZE; i++) {
+                if (!symbol.equals(cells[i][j].getRepresentation().trim())) {
+                    win = false;
+                    break;
+                }
+            }
+            if (win) return true;
+        }
+
+        boolean win = true;
+        for (int i = 0; i < SIZE; i++) {
+            if (!symbol.equals(cells[i][i].getRepresentation().trim())) {
+                win = false;
+                break;
+            }
+        }
+        if (win) return true;
+
+        win = true;
+        for (int i = 0; i < SIZE; i++) {
+            if (!symbol.equals(cells[i][SIZE - 1 - i].getRepresentation().trim())) {
+                win = false;
+                break;
+            }
+        }
+        return win;
     }
+
+
+    public boolean isBoardFull() {
+        for (int i = 0; i < SIZE; i++) {
+            for (int j = 0; j < SIZE; j++) {
+                if (cells[i][j].isEmpty()) {
+                    return false;
+            }
+        }
+    }
+        return true;
+
+}
 }
