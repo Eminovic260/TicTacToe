@@ -8,16 +8,18 @@ public class TicTacToe {
     public static final int SIZE = 3;
     private Cell[][] cells;
 
-    public TicTacToe() {
+    public TicTacToe(Player player1, Player player2) {
+        this.playerX = player1;
+        this.playerO = player2;
+        this.currentPlayer = playerX;
+
         cells = new Cell[SIZE][SIZE];
         for (int i = 0; i < SIZE; i++) {
             for (int j = 0; j < SIZE; j++) {
                 cells[i][j] = new Cell();
             }
         }
-        playerX = new Player("X");
-        playerO = new Player("O");
-        currentPlayer = playerX;
+
     }
 
     public Cell[][] getCells() {
@@ -37,29 +39,6 @@ public class TicTacToe {
     }
 
 
-    public int[] getMove() {
-        Scanner scanner = new Scanner(System.in);
-        int row = -1;
-        int col = -1;
-
-        while (true) {
-            System.out.print("Jouer Ligne et Colonne : ");
-            row = scanner.nextInt() - 1;
-            col = scanner.nextInt() - 1;
-            if (row < 0 || row >= SIZE || col < 0 || col >= SIZE) {
-                System.out.println("La colonne n'est pas valide !");
-                continue;
-            }
-            if (!cells[row][col].isEmpty()) {
-                System.out.println("La cellule est deja prise !");
-                continue;
-            }
-            break;
-        }
-        scanner.nextLine();
-        return new int[]{row, col};
-    }
-
 
     public void switchPlayer() {
         currentPlayer = (currentPlayer == playerX) ? playerO : playerX;
@@ -73,12 +52,12 @@ public class TicTacToe {
     public void run() {
         while (true) {
             display();
-            int[] move = getMove();
+            int[] move = currentPlayer.getMove(cells);
             setOwner(move[0], move[1], currentPlayer);
 
             if (checkWin(currentPlayer)) {
                 display();
-                System.out.println("Le Gagnat est : Joueur " + currentPlayer.getRepresentation() + " ! ");
+                System.out.println("Le Gagnant est : Joueur " + currentPlayer.getRepresentation() + " ! ");
                 break;
             }
             if (isBoardFull()){
