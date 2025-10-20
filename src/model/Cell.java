@@ -13,8 +13,7 @@ public class Cell {
     public void setOwner(Player player) {
         this.owner = player;
     }
-
-
+    public Player getOwner() {return owner;}
     public boolean isEmpty() {
         return owner == null;
     }

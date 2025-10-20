@@ -15,7 +15,7 @@ public class TicTacToeTest {
     @Test
     public void testBoard() {
         TicTacToe board = new TicTacToe();
-        Cell[][] cells = board.getCells();
+        Cell[][] cells = board.getAllCells();
 
         assertEquals(TicTacToe.SIZE, cells.length);
     }
