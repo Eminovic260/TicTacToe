@@ -26,10 +26,17 @@ public class TicTacToe {
             }
         }
     }
-    public Cell[][] getCells() {
-        return cells;
-    }
+    public Cell[][] getAllCells() {return cells;}
 
+    public Cell getCells(int x, int y) {
+        if(isValidCoordinate(x, y)){
+            return cells[x][y];
+        }
+        return null;
+    }
+    public boolean isValidCoordinate(int x, int y) {
+        return x >= 0 && x < SIZE && y >= 0 && y < SIZE;
+    }
 
     public void switchPlayer() {
         currentPlayer = (currentPlayer == playerX) ? playerO : playerX;
@@ -46,7 +53,7 @@ public class TicTacToe {
             int[] move = currentPlayer.getMove(cells);
             setOwner(move[0], move[1], currentPlayer);
 
-            if (checkWin(currentPlayer)) {
+            if (checkWinConditions(move[0]-1, move[1]-1)) {
                 view.display(cells);
                 String symbol = currentPlayer.getRepresentation();
                 view.displayWinner(symbol);
@@ -64,7 +71,55 @@ public class TicTacToe {
     }
 
 
-    public boolean checkWin(Player player) {
+
+
+
+
+
+    public boolean checkWinConditions(int myX, int myY){
+        int [][] directions = {
+                {-1, 0}, // haut
+                {0, 1}, // droite
+                {1, -1}, // diagonale bas gauche
+                {1, 1}}; // diagonale bas droite
+        for(int [] direction : directions){
+            if(checkBothDirections(myX, myY, direction[0], direction[1])){
+                return true;
+            };
+        }
+        return false;
+    }
+    private boolean checkBothDirections(int myX, int myY, int deltaX, int deltaY){
+        Player myPlayer = currentPlayer;
+        int count = 1;
+        count += countInDirection(myX, myY, deltaX, deltaY, myPlayer);
+        count += countInDirection(myX, myY, -deltaX, -deltaY, myPlayer);
+        return count >=3;
+    }
+    private int countInDirection(int myX, int myY, int deltaX, int deltaY, Player myPlayer){
+        int count = 0;
+        int x = myX + deltaX;
+        int y = myY + deltaY;
+
+        while(isValidCoordinate(x, y) && getCells(x, y).isEmpty() && getCells(x, y).getOwner() == myPlayer){
+            count++;
+            x+=deltaX;
+            y+=deltaY;
+        }
+        return count;
+    }
+
+
+
+
+
+
+
+
+
+
+
+    /*public boolean checkWin(Player player) {
         String symbol = player.getRepresentation();
 
         for (int i = 0; i < SIZE; i++) {
@@ -106,7 +161,7 @@ public class TicTacToe {
             }
         }
         return win;
-    }
+    }*/
 
 
     public boolean isBoardFull() {
