@@ -1,3 +1,7 @@
+package model;
+
+import entites.Player;
+
 public class Cell {
 
     private Player owner;

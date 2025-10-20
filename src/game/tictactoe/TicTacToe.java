@@ -1,17 +1,23 @@
-import java.util.Scanner;
+package game.tictactoe;
+import ui.View;
+import model.Cell;
+import entites.Player;
 
 public class TicTacToe {
 
+    private View view;
     private Player playerX;
     private Player playerO;
     private Player currentPlayer;
-    public static final int SIZE = 3;
     private Cell[][] cells;
+    public static final int SIZE = 3;
 
-    public TicTacToe(Player player1, Player player2) {
+    public TicTacToe(Player player1, Player player2, View view) {
         this.playerX = player1;
         this.playerO = player2;
         this.currentPlayer = playerX;
+        this.view = view;
+
 
         cells = new Cell[SIZE][SIZE];
         for (int i = 0; i < SIZE; i++) {
@@ -19,25 +25,10 @@ public class TicTacToe {
                 cells[i][j] = new Cell();
             }
         }
-
     }
-
     public Cell[][] getCells() {
         return cells;
     }
-
-    public void display() {
-        for (int i = 0; i < SIZE; i++) {
-            for (int j = 0; j < SIZE; j++) {
-
-                System.out.print(cells[i][j].getRepresentation());
-                if (j < SIZE - 1) System.out.print("|");
-            }
-            System.out.println();
-            if (i < SIZE - 1) System.out.println(" ---------");
-        }
-    }
-
 
 
     public void switchPlayer() {
@@ -51,18 +42,20 @@ public class TicTacToe {
 
     public void run() {
         while (true) {
-            display();
+            view.display(cells);
             int[] move = currentPlayer.getMove(cells);
             setOwner(move[0], move[1], currentPlayer);
 
             if (checkWin(currentPlayer)) {
-                display();
-                System.out.println("Le Gagnant est : Joueur " + currentPlayer.getRepresentation() + " ! ");
+                view.display(cells);
+                String symbol = currentPlayer.getRepresentation();
+                view.displayWinner(symbol);
+
                 break;
             }
             if (isBoardFull()){
-                display();
-                System.out.println("MAtch nul !");
+                view.display(cells);
+                view.displayDraw();
                 break;
             }
 
