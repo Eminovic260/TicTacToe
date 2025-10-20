@@ -1,3 +1,7 @@
+package entites;
+import model.Cell;
+
+
 public abstract  class Player {
     protected String representation;
 

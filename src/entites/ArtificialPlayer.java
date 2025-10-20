@@ -1,13 +1,19 @@
+package entites;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+import model.Cell;
+import ui.View;
 
 public class ArtificialPlayer extends Player {
     private Random random;
+    private View view;
 
-    public ArtificialPlayer(String representation) {
+    public ArtificialPlayer(String representation, View view) {
         super(representation);
         this.random = new Random();
+        this.view = view;
     }
 
     @Override
@@ -24,8 +30,8 @@ public class ArtificialPlayer extends Player {
         if (!moves.isEmpty()) {
             int index = random.nextInt(moves.size());
             int[] move = moves.get(index);
-            System.out.println("Le bot  " + representation + " joue " +  (move[0] + 1) + " " + (move[1]+ 1));
-        return move;
+            view.displayBotPlays(representation, move[0], move[1]);
+            return move;
         }
 
         return new int[]{-1, -1};
