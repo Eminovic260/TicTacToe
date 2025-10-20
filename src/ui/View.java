@@ -11,7 +11,7 @@ public class View {
                 if (j < size - 1) System.out.print("|");
             }
             System.out.println();
-            if (i < size - 1) System.out.println(" ---------");
+            if (i < size - 1) System.out.println(" --------------------------------------------------------");
         }
     }
 
