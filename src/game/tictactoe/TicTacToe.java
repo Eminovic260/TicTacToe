@@ -1,4 +1,5 @@
 package game.tictactoe;
+
 import game.Game;
 import ui.View;
 import model.Cell;
@@ -26,7 +27,7 @@ public class TicTacToe extends Game {
                 view.displayWinner(symbol);
                 break;
             }
-            if (isBoardFull()){
+            if (isBoardFull()) {
                 view.display(board);
                 view.displayDraw();
                 break;
@@ -37,40 +38,39 @@ public class TicTacToe extends Game {
     }
 
 
-
-
-
-
     @Override
-    public boolean checkWin(int myX, int myY){
-        int [][] directions = {
-                {-1, 0}, // haut
-                {0, 1}, // droite
-                {1, -1}, // diagonale bas gauche
-                {1, 1}}; // diagonale bas droite
-        for(int [] direction : directions){
-            if(checkBothDirections(myX, myY, direction[0], direction[1])){
+    public boolean checkWin(int myX, int myY) {
+        int[][] directions = {
+            {-1, 0}, // haut
+            {0, 1}, // droite
+            {1, -1}, // diagonale bas gauche
+            {1, 1}}; // diagonale bas droite
+        for (int[] direction : directions) {
+            if (checkBothDirections(myX, myY, direction[0], direction[1])) {
                 return true;
-            };
+            }
+            ;
         }
         return false;
     }
-    private boolean checkBothDirections(int myX, int myY, int deltaX, int deltaY){
+
+    private boolean checkBothDirections(int myX, int myY, int deltaX, int deltaY) {
         Player myPlayer = getCell(myX, myY).getOwner();
         int count = 1;
         count += countInDirection(myX, myY, deltaX, deltaY, myPlayer);
         count += countInDirection(myX, myY, -deltaX, -deltaY, myPlayer);
-        return count >=WIN_LENGTH;
+        return count >= WIN_LENGTH;
     }
-    private int countInDirection(int myX, int myY, int deltaX, int deltaY, Player myPlayer){
+
+    private int countInDirection(int myX, int myY, int deltaX, int deltaY, Player myPlayer) {
         int count = 0;
         int x = myX + deltaX;
         int y = myY + deltaY;
 
-        while(isValidCoordinate(x, y) && getCell(x, y).getOwner() == myPlayer){
+        while (isValidCoordinate(x, y) && getCell(x, y).getOwner() == myPlayer) {
             count++;
-            x+=deltaX;
-            y+=deltaY;
+            x += deltaX;
+            y += deltaY;
         }
         return count;
     }

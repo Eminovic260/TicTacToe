@@ -14,7 +14,26 @@ public class Gomoku extends Game {
 
     @Override
     public void run() {
+        while (true) {
+            view.display(board);
+            Player currentPlayer = getCurrentPlayer();
+            int[] move = currentPlayer.getMove(board);
+            setOwner(move[0], move[1], currentPlayer);
 
+            if (checkWin(move[0], move[1])) {
+                view.display(board);
+                String symbol = currentPlayer.getRepresentation();
+                view.displayWinner(symbol);
+                break;
+            }
+            if (isBoardFull()){
+                view.display(board);
+                view.displayDraw();
+                break;
+            }
+
+            switchPlayer();
+        }
     }
 
     @Override
