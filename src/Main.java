@@ -17,8 +17,11 @@ public class Main {
 
         int choice = view.displayMenu();
 
-        Player player1 = new HumanPlayer("X", interaction);
-        Player player2 = new ArtificialPlayer("O", view);
+        final String RED = "\u001B[31m";
+        final String GREEN = "\u001B[32m";
+
+        Player player1 = new HumanPlayer("o", interaction, RED);
+        Player player2 = new ArtificialPlayer("o", GREEN, view);
 
         Game game = null;
 

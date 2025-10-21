@@ -10,8 +10,8 @@ public class ArtificialPlayer extends Player {
     private Random random;
     private View view;
 
-    public ArtificialPlayer(String representation, View view) {
-        super(representation);
+    public ArtificialPlayer(String representation,String colorCode, View view) {
+        super(colorCode + representation + "\u001B[0m");
         this.random = new Random();
         this.view = view;
     }

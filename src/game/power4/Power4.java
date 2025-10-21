@@ -24,7 +24,7 @@ public class Power4 extends Game {
                 return i;
             }
         }
-        return -1; // Column is full
+        return -1;
     }
 
 
@@ -40,7 +40,7 @@ public class Power4 extends Game {
 
             int col = move[1];
             if (!isValidMove(0, col)) {
-                view.displayMessage("Invalid move! Column is full.");
+                view.displayMessage("Mouvement invalide");
                 continue;
             }
 

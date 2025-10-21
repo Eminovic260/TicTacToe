@@ -1,12 +1,13 @@
 package entites;
 import model.Cell;
 import ui.InteractionUtilisateur;
+
 public class HumanPlayer extends Player {
 
     private InteractionUtilisateur interaction;
 
-    public HumanPlayer(String representation, InteractionUtilisateur interaction) {
-        super(representation);
+    public HumanPlayer(String representation, InteractionUtilisateur interaction, String colorCode) {
+        super(colorCode + representation+ "\u001B[0m");
         this.interaction = interaction;
     }
 
