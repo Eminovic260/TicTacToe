@@ -1,8 +1,6 @@
-package game.gomoku;
+package model;
 
-import entites.Player;
-import game.Game;
-import ui.View;
+import vue.View;
 
 public class Gomoku extends Game {
     public static final int SIZE = 15;

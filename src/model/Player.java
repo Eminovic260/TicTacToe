@@ -1,5 +1,4 @@
-package entites;
-import model.Cell;
+package model;
 
 
 public abstract  class Player {

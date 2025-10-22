@@ -1,9 +1,6 @@
-package game.tictactoe;
+package model;
 
-import game.Game;
-import ui.View;
-import model.Cell;
-import entites.Player;
+import vue.View;
 
 public class TicTacToe extends Game {
     public static final int SIZE = 3;

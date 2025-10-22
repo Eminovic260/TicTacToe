@@ -1,7 +1,5 @@
-package game;
-import model.Cell;
-import ui.View;
-import entites.Player;
+package model;
+import vue.View;
 
 public abstract class Game {
     protected Cell[][] board;

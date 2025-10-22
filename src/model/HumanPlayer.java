@@ -1,6 +1,5 @@
-package entites;
-import model.Cell;
-import ui.InteractionUtilisateur;
+package model;
+import controller.InteractionUtilisateur;
 
 public class HumanPlayer extends Player {
 

@@ -1,11 +1,6 @@
-package game.power4;
+package model;
 
-import entites.Player;
-import game.Game;
-import ui.View;
-import ui.InteractionUtilisateur;
-import model.Cell;
-import entites.Player;
+import vue.View;
 
 
 public class Power4 extends Game {

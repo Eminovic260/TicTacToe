@@ -1,4 +1,6 @@
-package ui;
+package controller;
+
+import vue.View;
 
 import java.util.Scanner;
 

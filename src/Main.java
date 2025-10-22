@@ -1,12 +1,12 @@
-import entites.ArtificialPlayer;
-import entites.HumanPlayer;
-import entites.Player;
-import game.Game;
-import game.power4.Power4;
-import game.tictactoe.TicTacToe;
-import ui.InteractionUtilisateur;
-import ui.View;
-import game.gomoku.Gomoku;
+import model.ArtificialPlayer;
+import model.HumanPlayer;
+import model.Player;
+import model.Game;
+import model.Power4;
+import model.TicTacToe;
+import controller.InteractionUtilisateur;
+import vue.View;
+import model.Gomoku;
 import java.util.Scanner;
 
 public class Main {

@@ -1,4 +1,4 @@
-package ui;
+package vue;
 import model.Cell;
 import java.util.Scanner;
 
