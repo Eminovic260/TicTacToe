@@ -13,7 +13,7 @@ public class Power4 extends Game {
     }
 
 
-    private int findLowestEmptyRow(int col) {
+    public int findLowestEmptyRow(int col) {
         for (int i = ROWS - 1; i >= 0; i--) {
             if (board[i][col].isEmpty()) {
                 return i;
@@ -22,36 +22,28 @@ public class Power4 extends Game {
         return -1;
     }
 
-
-    @Override
-    public void run() {
-        view.display(board);
-        while (!isBoardFull()) {
-            Player currentPlayer = getCurrentPlayer();
-            int[] move = currentPlayer.getMove(board);
-            if (move == null || move.length < 2) {
-                continue;
-            }
-
-            int col = move[1];
-            if (!isValidMove(0, col)) {
-                view.displayMessage("Mouvement invalide");
-                continue;
-            }
-
-            int landingRow = findLowestEmptyRow(col);
-            if (landingRow >= 0) {
-                setOwner(landingRow, col, currentPlayer);
-                view.display(board);
-            }
-            if (checkWin(landingRow, col)) {
-                view.displayWinner(currentPlayer.getRepresentation());
-                return;
-            }
-
-            switchPlayer();
+    /**
+     * Executes a move on the board (Model only - no input handling)
+     */
+    public void executeMove(int col, Player player) {
+        int row = findLowestEmptyRow(col);
+        if (row >= 0) {
+            setOwner(row, col, player);
         }
-        view.displayDraw();
+    }
+
+    /**
+     * Switches to the next player
+     */
+    public void switchPlayerTurn() {
+        switchPlayer();
+    }
+
+    /**
+     * Gets the current player
+     */
+    public Player getCurrentPlayerTurn() {
+        return getCurrentPlayer();
     }
 
     @Override
@@ -89,7 +81,7 @@ private int countInDirection(int myX, int myY, int deltaX, int deltaY, Player my
 }
 
     @Override
-    protected boolean isValidMove(int row, int col) {
+    public boolean isValidMove(int row, int col) {
         if (!isValidCoordinate(0, col)) {
             return false;
         }

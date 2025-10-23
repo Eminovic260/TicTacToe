@@ -8,7 +8,7 @@ import vue.View;
 
 public class ArtificialPlayer extends Player {
     private Random random;
-    private View view;
+    private final View view;
 
     public ArtificialPlayer(String representation,String colorCode, View view) {
         super(colorCode + representation + "\u001B[0m");

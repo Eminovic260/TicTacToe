@@ -10,28 +10,25 @@ public class TicTacToe extends Game {
         super(new Player[]{player1, player2}, view, SIZE, SIZE);
     }
 
-    @Override
-    public void run() {
-        while (true) {
-            view.display(board);
-            Player currentPlayer = getCurrentPlayer();
-            int[] move = currentPlayer.getMove(board);
-            setOwner(move[0], move[1], currentPlayer);
+    /**
+     * Executes a move on the board (Model only - no input handling)
+     */
+    public void executeMove(int row, int col, Player player) {
+        setOwner(row, col, player);
+    }
 
-            if (checkWin(move[0], move[1])) {
-                view.display(board);
-                String symbol = currentPlayer.getRepresentation();
-                view.displayWinner(symbol);
-                break;
-            }
-            if (isBoardFull()) {
-                view.display(board);
-                view.displayDraw();
-                break;
-            }
+    /**
+     * Switches to the next player
+     */
+    public void switchPlayerTurn() {
+        switchPlayer();
+    }
 
-            switchPlayer();
-        }
+    /**
+     * Gets the current player
+     */
+    public Player getCurrentPlayerTurn() {
+        return getCurrentPlayer();
     }
 
 

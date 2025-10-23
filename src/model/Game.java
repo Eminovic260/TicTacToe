@@ -2,12 +2,12 @@ package model;
 import vue.View;
 
 public abstract class Game {
-    protected Cell[][] board;
-    protected Player[] players;
-    protected int currentPlayerIndex = 0;
+    public Cell[][] board;
+    public Player[] players;
+    public int currentPlayerIndex = 0;
     protected View view;
-    protected int rows;
-    protected int cols;
+    public int rows;
+    public int cols;
 
     public Game (Player[] players, View view, int rows, int cols) {
         this.players = players;
@@ -55,8 +55,6 @@ public abstract class Game {
         }
         return null;
     }
-
-    public abstract void run();
 
     protected abstract boolean checkWin(int row, int col);
 
