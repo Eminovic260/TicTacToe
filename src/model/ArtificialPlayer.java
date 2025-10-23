@@ -30,7 +30,7 @@ public class ArtificialPlayer extends Player {
         if (!moves.isEmpty()) {
             int index = random.nextInt(moves.size());
             int[] move = moves.get(index);
-            view.displayBotPlays(representation, move[0], move[1]);
+            view.displayBotMove(representation, move[0], move[1]);
             return move;
         }
 

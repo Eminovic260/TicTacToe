@@ -24,14 +24,31 @@ public class Main {
         InteractionUtilisateur interaction = new InteractionUtilisateur(scanner, menuView);
 
         int choice = menuView.displayMenu();
-
+        int playerChoice = menuView.displayChoice();
         final String RED = "\u001B[31m";
         final String GREEN = "\u001B[32m";
+        Player player1;
+        Player player2;
 
-        Player player1 = new HumanPlayer("o", RED);
-        Player player2 = new ArtificialPlayer("o", GREEN, menuView);
+        switch (playerChoice){
+            case 1:
+                player1 =new HumanPlayer("o", RED);
+                player2 =new HumanPlayer("x", GREEN);
+                break;
+            case 2:
+                player1 =new HumanPlayer("o", RED);
+                player2 =new ArtificialPlayer("x", GREEN, menuView);
+                break;
+            case 3:
+                player1 =new ArtificialPlayer("o", RED, menuView);
+                player2 =new ArtificialPlayer("x", GREEN, menuView);
+                break;
+            default:
+                menuView.displayMessage("Erreur");
+                return;
+        }
 
-        GameController controller = null;
+        GameController controller;
 
         switch (choice) {
             case 1:
