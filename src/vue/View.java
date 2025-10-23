@@ -62,6 +62,20 @@ public class View {
         scanner.nextLine();
         return choice;
     }
+    public int displayChoice(){
+        int choice = -1;
+        System.out.println("Make your choice: ");
+        System.out.println("1. Two human player ?");
+        System.out.println("2. One human vs Computer ?");
+        System.out.println("3. Computer vs Computer ?");
+        while (!scanner.hasNextInt()) {
+            System.out.println("Error!");
+            scanner.next();
+        }
+        choice = scanner.nextInt();
+        scanner.nextLine();
+        return choice;
+    }
 
     /**
      * Displays a message announcing the winner.
