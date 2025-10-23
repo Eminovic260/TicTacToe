@@ -62,6 +62,12 @@ public class View {
         scanner.nextLine();
         return choice;
     }
+
+    /**
+     * Displays the menu for the choice of players.
+     *
+     * @return The user's menu choice (1-3 for different kind of player)
+     */
     public int displayChoice(){
         int choice = -1;
         System.out.println("Make your choice: ");
