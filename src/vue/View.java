@@ -29,16 +29,6 @@ public class View {
             }
         }
 
-    /**
-     * Backward compatibility method for displaying the board.
-     *
-     * @param cells The 2D array representing the board state
-     * @deprecated Use {@link #displayBoard(Cell[][])} instead
-     */
-    @Deprecated
-    public void display(Cell[][] cells) {
-        displayBoard(cells);
-    }
 
     /**
      * Displays the main game menu and returns the user's selection.
@@ -100,16 +90,6 @@ public class View {
     }
 
     /**
-     * Backward compatibility method for displaying a draw.
-     *
-     * @deprecated Use {@link #displayGameDraw()} instead
-     */
-    @Deprecated
-    public void displayDraw() {
-        displayGameDraw();
-    }
-
-    /**
      * Displays a general message to the player.
      *
      * @param message The message to display
@@ -127,15 +107,5 @@ public class View {
      */
     public void displayBotMove(String representation, int row, int col) {
         System.out.println("Bot " + representation + " plays " +  (row + 1) + " " + (col + 1));
-    }
-
-    /**
-     * Backward compatibility method for displaying bot moves.
-     *
-     * @deprecated Use {@link #displayBotMove(String, int, int)} instead
-     */
-    @Deprecated
-    public void displayBotPlays(String representation, int row, int col) {
-        displayBotMove(representation, row, col);
     }
 }
