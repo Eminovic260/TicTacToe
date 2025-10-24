@@ -6,8 +6,8 @@ public class TicTacToe extends Game {
     public static final int SIZE = 3;
     private static final int WIN_LENGTH = 3;
 
-    public TicTacToe(Player player1, Player player2, View view) {
-        super(new Player[]{player1, player2}, view, SIZE, SIZE);
+    public TicTacToe(Player player1, Player player2) {
+        super(new Player[]{player1, player2}, SIZE, SIZE);
     }
 
     /**

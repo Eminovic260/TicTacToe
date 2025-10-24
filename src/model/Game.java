@@ -5,13 +5,11 @@ public abstract class Game {
     public Cell[][] board;
     public Player[] players;
     public int currentPlayerIndex = 0;
-    protected View view;
     public int rows;
     public int cols;
 
-    public Game (Player[] players, View view, int rows, int cols) {
+    public Game (Player[] players, int rows, int cols) {
         this.players = players;
-        this.view = view;
         this.rows = rows;
         this.cols = cols;
         createBoard();

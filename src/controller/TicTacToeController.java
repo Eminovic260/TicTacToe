@@ -75,6 +75,7 @@ public class TicTacToeController implements GameController {
             int [] move = currentPlayer.getMove(game.board);
             lastMoveRow = move[0];
             lastMoveCol = move[1];
+            view.displayBotMove(currentPlayer.getRepresentation(), move[0], move[1]);
             return true;
         }
         interaction.displayMoveRequest(currentPlayer.getRepresentation());
@@ -119,7 +120,7 @@ public class TicTacToeController implements GameController {
 
     @Override
     public void resetGame() {
-        game = new TicTacToe(game.players[0], game.players[1], (View) view);
+        game = new TicTacToe(game.players[0], game.players[1]);
         lastMoveRow = -1;
         lastMoveCol = -1;
     }

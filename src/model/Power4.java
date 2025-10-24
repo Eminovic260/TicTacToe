@@ -8,8 +8,8 @@ public class Power4 extends Game {
     public static final int COLS = 7;
     private static final int WIN_LENGTH = 4;
 
-    public Power4(Player player1, Player player2, View view) {
-        super(new Player[]{player1, player2}, view, ROWS, COLS);
+    public Power4(Player player1, Player player2) {
+        super(new Player[]{player1, player2}, ROWS, COLS);
     }
 
 

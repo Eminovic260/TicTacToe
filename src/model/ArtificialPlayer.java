@@ -8,12 +8,10 @@ import vue.View;
 
 public class ArtificialPlayer extends Player {
     private Random random;
-    private final View view;
 
-    public ArtificialPlayer(String representation,String colorCode, View view) {
+    public ArtificialPlayer(String representation,String colorCode) {
         super(colorCode + representation + "\u001B[0m");
         this.random = new Random();
-        this.view = view;
     }
 
     @Override
@@ -30,7 +28,6 @@ public class ArtificialPlayer extends Player {
         if (!moves.isEmpty()) {
             int index = random.nextInt(moves.size());
             int[] move = moves.get(index);
-            view.displayBotMove(representation, move[0], move[1]);
             return move;
         }
 

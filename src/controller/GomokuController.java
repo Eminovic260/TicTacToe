@@ -113,7 +113,7 @@ public class GomokuController implements GameController {
 
     @Override
     public void resetGame() {
-        game = new Gomoku(game.players[0], game.players[1], (View) view);
+        game = new Gomoku(game.players[0], game.players[1]);
         lastMoveRow = -1;
         lastMoveCol = -1;
     }

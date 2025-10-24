@@ -102,7 +102,7 @@ public class Power4Controller implements GameController {
 
     @Override
     public void resetGame() {
-        game = new Power4(game.players[0], game.players[1], (View) view);
+        game = new Power4(game.players[0], game.players[1]);
         lastMoveCol = -1;
     }
 }
