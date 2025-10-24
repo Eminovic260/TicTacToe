@@ -25,7 +25,7 @@ public class Power4View extends View implements GameView {
         for (int i = 0; i < row; i++) {
             System.out.print("   ");
             for (int j = 0; j < col; j++) {
-                System.out.print("[" + cells[i][j].getRepresentation() + "]");
+                System.out.print("["+cells[i][j].getRepresentation()+"]");
             }
             System.out.println();
         }
