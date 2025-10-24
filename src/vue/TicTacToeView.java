@@ -16,7 +16,6 @@ public class TicTacToeView extends View implements GameView {
         int row = cells.length;
         int col = cells[0].length;
 
-        // Display numbers for columns
         System.out.print("   ");
         for (int j = 1; j <= col; j++) {
             System.out.print(" " + j + "  ");
@@ -24,7 +23,6 @@ public class TicTacToeView extends View implements GameView {
         System.out.println();
 
         for (int i = 0; i < row; i++) {
-            // Display row number
             System.out.print((i + 1) + "  ");
 
             for (int j = 0; j < col; j++) {

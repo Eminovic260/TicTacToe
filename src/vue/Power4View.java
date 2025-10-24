@@ -16,7 +16,6 @@ public class Power4View extends View implements GameView {
         int row = cells.length;
         int col = cells[0].length;
 
-        // Display numbers for columns
         System.out.print("   ");
         for (int j = 1; j <= col; j++) {
             System.out.print("  " + j + "  ");
@@ -31,7 +30,6 @@ public class Power4View extends View implements GameView {
             System.out.println();
         }
 
-        // Bottom border
         System.out.print("   ");
         for (int j = 0; j < col; j++) {
             System.out.print("-----");

@@ -79,7 +79,6 @@ public class TicTacToeController implements GameController {
         }
         interaction.displayMoveRequest(currentPlayer.getRepresentation());
 
-        // Check first integer
         if (!interaction.hasNextInt()) {
             interaction.displayInputError();
             interaction.nextLine();
@@ -88,7 +87,6 @@ public class TicTacToeController implements GameController {
 
         int row = interaction.nextInt() - 1; // Convert to 0-indexed
 
-        // Check second integer
         if (!interaction.hasNextInt()) {
             interaction.displayInputError();
             interaction.nextLine();
@@ -98,19 +96,16 @@ public class TicTacToeController implements GameController {
         int col = interaction.nextInt() - 1; // Convert to 0-indexed
         interaction.nextLine();
 
-        // Validate coordinates are within bounds
         if (!game.isValidCoordinate(row, col)) {
             interaction.displayOutOfBounds();
             return false;
         }
 
-        // Check if cell is already occupied
         if (!game.getCell(row, col).isEmpty()) {
             interaction.displayCellOccupied();
             return false;
         }
 
-        // Store the move coordinates
         lastMoveRow = row;
         lastMoveCol = col;
 
@@ -124,7 +119,6 @@ public class TicTacToeController implements GameController {
 
     @Override
     public void resetGame() {
-        // Reset TicTacToe game state
         game = new TicTacToe(game.players[0], game.players[1], (View) view);
         lastMoveRow = -1;
         lastMoveCol = -1;

@@ -16,7 +16,6 @@ public class GomokuView extends View implements GameView {
         int row = cells.length;
         int col = cells[0].length;
 
-        // Display column numbers header
         System.out.print("    ");
         for (int j = 1; j <= col; j++) {
             System.out.printf("  " + String.format("%2d", j) + "  ");
@@ -24,17 +23,14 @@ public class GomokuView extends View implements GameView {
         System.out.println();
 
         for (int i = 0; i < row; i++) {
-            // Display row number
             System.out.print(String.format("%2d", (i + 1)) + "  ");
 
-            // Display row content with cell separators
             for (int j = 0; j < col; j++) {
                 System.out.print(" " + cells[i][j].getRepresentation() + " ");
                 if (j < col - 1) System.out.print("|");
             }
             System.out.println();
 
-            // Add separator line between rows
             if (i < row - 1) {
                 System.out.print("    ");
                 for (int j = 0; j < col; j++) {

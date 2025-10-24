@@ -13,7 +13,6 @@ public class HumanPlayer extends Player {
      */
     @Override
     public int[] getMove(Cell[][] board) {
-        // Deprecated - controllers handle human input
         return new int[]{-1, -1};
     }
 }
