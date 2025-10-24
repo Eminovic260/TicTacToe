@@ -61,7 +61,7 @@ public class TicTacToeView extends View implements GameView {
      */
     @Override
     public void displayWinner(String symbol) {
-        System.out.println("\n🎉 Winner: Player " + symbol + " ! 🎉\n");
+        System.out.println("\nWinner: Player " + symbol + " !\n");
     }
 
     /**
@@ -69,7 +69,7 @@ public class TicTacToeView extends View implements GameView {
      */
     @Override
     public void displayGameDraw() {
-        System.out.println("\n🤝 Draw! 🤝\n");
+        System.out.println("\nDraw!\n");
     }
 
     /**
