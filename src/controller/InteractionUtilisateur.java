@@ -13,6 +13,27 @@ public class InteractionUtilisateur {
     private Scanner scanner;
     private View view;
 
+
+    /**
+     * Demande à l'utilisateur de choisir un jeu.
+     *
+     * @return le numéro correspondant au jeu choisi.
+     */
+    public int askForGameChoice() {
+        return view.displayMenu(); // L'affichage est géré par la vue
+    }
+
+    /**
+     * Demande à l'utilisateur de choisir le type de joueurs.
+     *
+     * @return le numéro correspondant au type de joueurs choisi.
+     */
+    public int askForPlayerChoice() {
+        return view.displayChoice(); // L'affichage est aussi dans la vue
+    }
+
+
+
     /**
      * Constructs an InteractionUtilisateur with a Scanner and View.
      *

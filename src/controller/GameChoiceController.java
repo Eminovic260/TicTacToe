@@ -2,107 +2,74 @@ package controller;
 
 import model.*;
 import vue.*;
-import model.ArtificialPlayer;
-import model.HumanPlayer;
-import model.Player;
-import model.Power4;
-import model.TicTacToe;
-import model.Gomoku;
-import vue.View;
-import vue.GameView;
-import vue.TicTacToeView;
-import vue.Power4View;
-import vue.GomokuView;
-import java.util.Scanner;
 
+/**
+ * Contrôleur responsable du choix du jeu et des types de joueurs.
+ * Il ne contient aucune logique d'affichage directe — tout passe par InteractionUtilisateur.
+ */
 public class GameChoiceController {
-    private GameState gameState;
+
+    private final InteractionUtilisateur interaction;
     private GameController currentController;
 
-    public GameChoiceController() {
-        this.gameState = GameState.MENU;
+    /**
+     * Constructeur
+     */
+    public GameChoiceController(InteractionUtilisateur interaction) {
+        this.interaction = interaction;
     }
 
-    public void gameChoice() {
+    /**
+     * Permet de choisir le jeu et les joueurs via InteractionUtilisateur.
+     * Crée et renvoie le GameController correspondant.
+     */
+    public GameController chooseGameAndPlayers() {
 
-        Scanner scanner = new Scanner(System.in);
-        View menuView = new View();
-        InteractionUtilisateur interaction = new InteractionUtilisateur(scanner, menuView);
+        int gameChoice = interaction.askForGameChoice();
+        int playerChoice = interaction.askForPlayerChoice();
 
-        int choice = menuView.displayMenu();
-        int playerChoice = menuView.displayChoice();
         final String RED = "\u001B[31m";
         final String GREEN = "\u001B[32m";
+
         Player player1;
         Player player2;
 
         switch (playerChoice) {
-            case 1:
+            case 1 -> {
                 player1 = new HumanPlayer("o", RED);
                 player2 = new HumanPlayer("x", GREEN);
-                break;
-            case 2:
+            }
+            case 2 -> {
                 player1 = new HumanPlayer("o", RED);
                 player2 = new ArtificialPlayer("x", GREEN);
-                break;
-            case 3:
+            }
+            case 3 -> {
                 player1 = new ArtificialPlayer("o", RED);
                 player2 = new ArtificialPlayer("x", GREEN);
-                break;
-            default:
-                menuView.displayMessage("Erreur");
-                return;
+            }
+            default -> {
+                interaction.displayMessage("Erreur choix de joueurs invalide");
+                return null;
+            }
         }
 
-        GameController controller;
+        currentController = switch (gameChoice) {
+            case 1 -> new TicTacToeController(new TicTacToe(player1, player2), new TicTacToeView(), interaction);
+            case 2 -> new GomokuController(new Gomoku(player1, player2), new GomokuView(), interaction);
+            case 3 -> new Power4Controller(new Power4(player1, player2), new Power4View(), interaction);
+            default -> {
+                interaction.displayMessage("Erreur choix de jeu invalide");
+                yield null;
+            }
+        };
 
-        switch (choice) {
-            case 1:
-                TicTacToe ticTacToe = new TicTacToe(player1, player2);
-                GameView ticTacToeView = new TicTacToeView();
-                controller = new TicTacToeController(ticTacToe, ticTacToeView, interaction);
-                break;
-            case 2:
-                Gomoku gomoku = new Gomoku(player1, player2);
-                GameView gomokuView = new GomokuView();
-                controller = new GomokuController(gomoku, gomokuView, interaction);
-                break;
-            case 3:
-                Power4 power4 = new Power4(player1, player2);
-                GameView power4View = new Power4View();
-                controller = new Power4Controller(power4, power4View, interaction);
-                break;
-            default:
-                menuView.displayMessage("Erreur");
-                return;
-        }
-        this.currentController = controller;
+        return currentController;
     }
 
-    public void update() {
-        switch (gameState) {
-            case MENU:
-                updateMenu();
-                gameState = GameState.PLAYING;
-                break;
-            case PLAYING:
-                updatePlaying();
-                break;
-            case GAME_OVER:
-                // updateGameOver();
-                break;
-            case VICTORY:
-                // updateVictory();
-                break;
-        }
-        update();
-    }
-    private void updateMenu() {
-        gameChoice();
-
-    }
-    private void updatePlaying() {
-        currentController.startGame();
-        // gameState = currentController.getGameEndState();
+    /**
+     * Getter du contrôleur courant (StatusMachine)
+     */
+    public GameController getCurrentController() {
+        return currentController;
     }
 }

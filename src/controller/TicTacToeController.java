@@ -38,30 +38,26 @@ public class TicTacToeController implements GameController {
         while (true) {
             Player currentPlayer = game.getCurrentPlayerTurn();
 
-            // Get and validate player move
             if (!handlePlayerMove(currentPlayer)) {
-                continue; // Invalid move, ask again
+                continue;
             }
 
-            // Execute the move in the model
             game.executeMove(lastMoveRow, lastMoveCol, currentPlayer);
 
-            // Display the board after move
             view.displayBoard(game.board);
 
-            // Check if current player won
             if (game.checkWin(lastMoveRow, lastMoveCol)) {
                 view.displayWinner(currentPlayer.getRepresentation());
                 break;
             }
 
-            // Check if board is full (draw)
+
             if (game.isBoardFull()) {
                 view.displayGameDraw();
                 break;
             }
 
-            // Switch to next player
+
             game.switchPlayerTurn();
         }
     }
@@ -86,7 +82,7 @@ public class TicTacToeController implements GameController {
             return false;
         }
 
-        int row = interaction.nextInt() - 1; // Convert to 0-indexed
+        int row = interaction.nextInt() - 1;
 
         if (!interaction.hasNextInt()) {
             interaction.displayInputError();
@@ -94,7 +90,7 @@ public class TicTacToeController implements GameController {
             return false;
         }
 
-        int col = interaction.nextInt() - 1; // Convert to 0-indexed
+        int col = interaction.nextInt() - 1;
         interaction.nextLine();
 
         if (!game.isValidCoordinate(row, col)) {
@@ -114,6 +110,34 @@ public class TicTacToeController implements GameController {
     }
 
     @Override
+    public boolean playTurn() {
+        Player currentPlayer = game.getCurrentPlayerTurn();
+
+        if (!handlePlayerMove(currentPlayer)) {
+            return false;
+        }
+
+        game.executeMove(lastMoveRow, lastMoveCol, currentPlayer);
+
+        view.displayBoard(game.board);
+
+        if (game.checkWin(lastMoveRow, lastMoveCol)) {
+            view.displayWinner(currentPlayer.getRepresentation());
+            return true;
+        }
+
+        if (game.isBoardFull()) {
+            view.displayGameDraw();
+            return true;
+        }
+
+        game.switchPlayerTurn();
+        return false;
+    }
+
+
+
+    @Override
     public Game getGame() {
         return game;
     }
@@ -123,5 +147,14 @@ public class TicTacToeController implements GameController {
         game = new TicTacToe(game.players[0], game.players[1]);
         lastMoveRow = -1;
         lastMoveCol = -1;
+    }
+
+    @Override
+    public int getLastMoveCol() {
+        return lastMoveCol;
+    }
+    @Override
+    public int getLastMoveRow() {
+        return lastMoveCol;
     }
 }

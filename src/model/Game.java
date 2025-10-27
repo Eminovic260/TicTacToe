@@ -54,7 +54,7 @@ public abstract class Game {
         return null;
     }
 
-    protected abstract boolean checkWin(int row, int col);
+    public abstract boolean checkWin(int row, int col);
 
     protected abstract boolean isValidMove(int row, int col);
 

@@ -3,6 +3,9 @@ package controller;
 import model.Game;
 
 public interface GameController {
+    int getLastMoveRow();
+    int getLastMoveCol();
+
     /**
      * Starts and manages the complete game loop.
      *
@@ -26,5 +29,7 @@ public interface GameController {
      * Resets the game to its initial state for a new session.
      */
     void resetGame();
+    boolean playTurn();
+
 }
 

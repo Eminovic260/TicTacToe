@@ -2,8 +2,9 @@ import controller.*;
 
 public class Main {
     public static void main(String[] args) {
-
-        GameChoiceController gameChoiceController = new GameChoiceController();
-        gameChoiceController.update();
+        StatusMachine statusMachine = new StatusMachine();
+        while (true) {
+            statusMachine.update();
+        }
     }
 }

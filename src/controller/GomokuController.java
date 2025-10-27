@@ -79,7 +79,7 @@ public class GomokuController implements GameController {
             return false;
         }
 
-        int row = interaction.nextInt() - 1; // Convert to 0-indexed
+        int row = interaction.nextInt() - 1;
 
         if (!interaction.hasNextInt()) {
             interaction.displayInputError();
@@ -87,7 +87,7 @@ public class GomokuController implements GameController {
             return false;
         }
 
-        int col = interaction.nextInt() - 1; // Convert to 0-indexed
+        int col = interaction.nextInt() - 1;
         interaction.nextLine();
 
         if (!game.isValidCoordinate(row, col)) {
@@ -105,7 +105,31 @@ public class GomokuController implements GameController {
 
         return true;
     }
+    @Override
+    public boolean playTurn() {
+        Player currentPlayer = game.getCurrentPlayerTurn();
 
+        if (!handlePlayerMove(currentPlayer)) {
+            return false;
+        }
+
+        game.executeMove(lastMoveRow, lastMoveCol, currentPlayer);
+
+        view.displayBoard(game.board);
+
+        if (game.checkWin(lastMoveRow, lastMoveCol)) {
+            view.displayWinner(currentPlayer.getRepresentation());
+            return true;
+        }
+
+        if (game.isBoardFull()) {
+            view.displayGameDraw();
+            return true;
+        }
+
+        game.switchPlayerTurn();
+        return false;
+    }
     @Override
     public Game getGame() {
         return game;
@@ -116,5 +140,14 @@ public class GomokuController implements GameController {
         game = new Gomoku(game.players[0], game.players[1]);
         lastMoveRow = -1;
         lastMoveCol = -1;
+    }
+
+    @Override
+    public int getLastMoveCol() {
+        return lastMoveCol;
+    }
+    @Override
+    public int getLastMoveRow() {
+        return lastMoveCol;
     }
 }
