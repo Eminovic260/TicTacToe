@@ -83,25 +83,26 @@ public class GameChoiceController {
         switch (gameState) {
             case MENU:
                 updateMenu();
-                gameState = gameState.PLAYING;
+                gameState = GameState.PLAYING;
                 break;
             case PLAYING:
                 updatePlaying();
                 break;
             case GAME_OVER:
-                updateGameOver();
+                // updateGameOver();
                 break;
             case VICTORY:
-                updateVictory();
+                // updateVictory();
                 break;
         }
+        update();
     }
     private void updateMenu() {
         gameChoice();
-        gameState = GameState.PLAYING;
+
     }
     private void updatePlaying() {
         currentController.startGame();
-        gameState = currentController.getGameEndState();
+        // gameState = currentController.getGameEndState();
     }
 }
