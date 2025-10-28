@@ -2,7 +2,7 @@ package model;
 
 import vue.View;
 
-public class TicTacToe extends Game {
+public class TicTacToe extends Game implements IGame {
     public static final int SIZE = 3;
     private static final int WIN_LENGTH = 3;
 

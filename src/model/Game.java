@@ -1,7 +1,7 @@
 package model;
 import vue.View;
 
-public abstract class Game {
+public abstract class Game implements IGame {
     public Cell[][] board;
     public Player[] players;
     public int currentPlayerIndex = 0;
@@ -15,7 +15,7 @@ public abstract class Game {
         createBoard();
     }
 
-    protected void createBoard(){
+    public void createBoard(){
         board = new Cell[rows][cols];
         for(int i = 0 ; i<rows; i++){
             for(int j = 0; j < cols; j++){
@@ -23,10 +23,10 @@ public abstract class Game {
             }
         }
     }
-    protected Player getCurrentPlayer(){
+    public Player getCurrentPlayer(){
         return players[currentPlayerIndex];
     }
-    protected void switchPlayer(){
+    public void switchPlayer(){
         currentPlayerIndex = (currentPlayerIndex + 1) % players.length;
     }
     public void setOwner(int row, int col, Player player){

@@ -3,7 +3,7 @@ package model;
 import vue.View;
 
 
-public class Power4 extends Game {
+public class Power4 extends Game implements IGame {
     public static final int ROWS = 6;
     public static final int COLS = 7;
     private static final int WIN_LENGTH = 4;

@@ -2,7 +2,7 @@ package model;
 
 import vue.View;
 
-public class Gomoku extends Game {
+public class Gomoku extends Game implements IGame {
     public static final int SIZE = 15;
     private static final int WIN_LENGTH = 5;
 
@@ -23,6 +23,7 @@ public class Gomoku extends Game {
     public void switchPlayerTurn() {
         switchPlayer();
     }
+
 
     /**
      * Gets the current player
