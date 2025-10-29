@@ -44,12 +44,22 @@ public class View {
         System.out.println("2. Gomoku");
         System.out.println("3. Power 4");
 
-        while (!scanner.hasNextInt()) {
-            System.out.println("Error!");
-            scanner.next();
+        boolean valid = false;
+        while (!valid) {
+            try {
+                choice = scanner.nextInt();
+                scanner.nextLine();
+                if (choice < 1 || choice > 3) {
+                    System.out.println("Erreur : entrez un nombre entre 1 et 3");
+                } else {
+                    valid = true;
+                }
+            } catch (Exception e) {
+                System.out.println("Erreur : vous devez entrer un nombre");
+                scanner.nextLine();
+            }
         }
-        choice = scanner.nextInt();
-        scanner.nextLine();
+
         return choice;
     }
 
@@ -58,20 +68,32 @@ public class View {
      *
      * @return The user's menu choice (1-3 for different kind of player)
      */
-    public int displayChoice(){
+    public int displayChoice() {
         int choice = -1;
         System.out.println("Make your choice: ");
         System.out.println("1. Two human player ?");
         System.out.println("2. One human vs Computer ?");
         System.out.println("3. Computer vs Computer ?");
-        while (!scanner.hasNextInt()) {
-            System.out.println("Error!");
-            scanner.next();
+
+        boolean valid = false;
+        while (!valid) {
+            try {
+                choice = scanner.nextInt();
+                scanner.nextLine();
+                if (choice < 1 || choice > 3) {
+                    System.out.println("Erreur : entrez un nombre entre 1 et 3 !");
+                } else {
+                    valid = true;
+                }
+            } catch (Exception e) {
+                System.out.println("Erreur : vous devez entrer un nombre !");
+                scanner.nextLine(); // vider le scanner pour éviter la boucle infinie
+            }
         }
-        choice = scanner.nextInt();
-        scanner.nextLine();
+
         return choice;
     }
+
 
     /**
      * Displays a message announcing the winner.
