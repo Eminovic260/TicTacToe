@@ -1,3 +1,4 @@
+```mermaid
 classDiagram
 direction BT
 class ArtificialPlayer {
@@ -202,4 +203,4 @@ TicTacToe  -->  Game
 TicTacToe  ..>  IGame 
 TicTacToeController  ..>  GameController 
 TicTacToeView  ..>  GameView 
-TicTacToeView  -->  View 
+TicTacToeView  -->  View  
